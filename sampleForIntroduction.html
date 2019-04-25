@@ -1,0 +1,165 @@
+<!doctype html>
+<html ⚡4email>
+<head>
+  <meta charset="utf-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+  <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+
+  <style amp4email-boilerplate>body{visibility:hidden}</style>
+  <style amp-custom>
+    h1 {
+      color: #666;
+      padding: 0.5em 0;
+      padding-left: 1em;
+      border-top: solid 3px #94BC13;
+      border-bottom: solid 3px #94BC13;
+    }
+    h2 {
+      position: relative;
+      display: inline-block;
+      padding: 0 2.5em;
+    }
+    h2:before, h2:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      display: inline-block;
+      width: 45px;
+      height: 2px;
+      border-top: solid 1px black;
+      border-bottom: solid 1px black;
+    }
+    h2:before {
+      left:0;
+    }
+    h2:after {
+      right: 0;
+    }
+    p {
+      text-align: left;
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+    .center {
+      text-align: center;
+    }
+    .left {
+      text-align: left;
+    }
+    .footer-text {
+      color:#808080;
+      font-size: 70%;
+      padding-left: 5em;
+    }
+    .inner-wrap {
+      width: 75%;
+    }
+    .line {
+      width: 100%;
+      background-color:#ffffff;
+      border-bottom: 3px solid #AAA;
+      border-collapse: collapse;
+      padding: 0;
+      margin:0;
+    }
+  </style>
+
+</head>
+
+<body>
+  <amp-state id="myState">
+    <script type="application/json">
+      {
+        "cats": [
+           {
+            "name": "たま",
+            "description": "とっても紳士。ちょっとシャイなので、友達になるのに時間がかかる。ちょっかいの出しすぎには注意。"
+          }
+          ,{
+            "name": "しま",
+            "description": "異様に人懐っこい。見知らぬ人でもすぐついていって、足にスリスリする。めちゃ毛が落ちる。"
+          }
+          ,{
+            "name": "ねこ",
+            "description": "わりと大きい。ダイナミックに遊ぶので見てて飽きない。好き嫌いが激しい。"
+          }
+        ]
+      }
+    </script>
+  </amp-state>
+
+  <!-- トップライン -->
+
+  <h1>我が家のねこちゃんズ</h1>
+
+  <div align="center">
+    <amp-selector id="carouselWithPreviewSelector"
+      class="carousel-preview"
+      on="select:carouselWithPreview.goToSlide(index=event.targetOption)"
+      layout="container">
+      <amp-img option="0"
+        selected
+        src="https://amp.dev/static/img/docs/tutorials/firstemail/photo_by_caleb_woods.jpg"
+        width="60"
+        height="40"
+        alt="a sample image"></amp-img>
+      <amp-img option="1"
+        src="https://amp.dev/static/img/docs/tutorials/firstemail/photo_by_craig_mclaclan.jpg"
+        width="60"
+        height="40"
+        alt="a sample image"></amp-img>
+      <amp-img option="2"
+        src="https://amp.dev/static/img/docs/tutorials/firstemail/photo_by_nick_karvounis.jpg"
+        width="60"
+        height="40"
+        alt="a sample image"></amp-img>
+    </amp-selector>
+  </div>
+
+  <amp-carousel id="carousel-with-preview"
+                height="350"
+                type="slides"
+                layout="fixed-height"
+                on="slideChange:AMP.setState({currentCat: event.index, selectedSlide: event.index})">
+    <amp-img layout="fill"
+             src="https://amp.dev/static/img/docs/tutorials/firstemail/photo_by_caleb_woods.jpg"
+             alt="photo courtesy of Unsplash"></amp-img>
+    <amp-img layout="fill"
+             src="https://amp.dev/static/img/docs/tutorials/firstemail/photo_by_craig_mclaclan.jpg"
+             alt="photo courtesy of Unsplash"></amp-img>
+    <amp-img layout="fixed-height"
+             height="350"
+             src="https://amp.dev/static/img/docs/tutorials/firstemail/photo_by_nick_karvounis.jpg"
+             alt="photo courtesy of Unsplash"></amp-img>
+  </amp-carousel>
+
+  <div class="center">
+    <h2>この子が 「<span [text]="myState.cats[currentCat].name">たま</span>」 だよ!</h2>
+  </div>
+
+  <p class="left"><span [text]="myState.cats[currentCat].name" style="font-weight: bold;">たま</span>について</p>
+  <p class="left" [text]="myState.cats[currentCat].description">とっても紳士。ちょっとシャイなので、友達になるのに時間がかかる。ちょっかいの出しすぎには注意。</p>
+  <p style="color: #AAA;">Selected slide:<span [text]="+selectedSlide + 1">1</span>/3</p>
+
+  <!-- line -->
+  <table class="line"><tr><td>&nbsp;</td></tr></table>
+
+  <!-- footer -->
+  <table class="footer-text">
+    <!-- 空行 -->
+    <tr><td><p></p></td></tr>
+    <tr><td >
+      レバレジーズ テックブログ
+    </td></tr>
+    <tr><td>
+      ■Mail: <a href="mailto:sample@examlpe.com">sample@examlpe.com</a>
+    </td></tr>
+    <tr><td>
+      ■<a href="https://recruit.jobcan.jp/leverages/show/b01/6854">We are hiring!</a>
+    </td></tr>
+  </table>
+
+</body>
+</html>
